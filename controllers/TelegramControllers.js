@@ -13,15 +13,15 @@ const decryData = (encryptedData) => {
 
 export async function postMessageToTelegram(req, res) {
     try {
-        const { fullName, email, phone, location, date } = req.body;
-        const encryptedData = encryData({ fullName, email, phone, location, date });
+        const { fullName, email, phone, location, date, typeOfWashing } = req.body;
+        const encryptedData = encryData({ fullName, email, phone, location, date, typeOfWashing });
 
         const newForm = new Telegram({encryptedData});
         await newForm.save();
 
         const decryptedData = decryData(encryptedData)
 
-        const telegramMessage = `🔒 Нова форма:\n👤 Ім'я: ${decryptedData.fullName}\n📧 Email: ${decryptedData.email}\n💬 Phone: ${decryptedData.phone}\nLocation: ${decryptedData.location}\nDate: ${decryptedData.date}`;
+        const telegramMessage = `🔒 Нова форма:\n👤 Name: ${decryptedData.fullName}\n📧 Email: ${decryptedData.email}\n💬 Phone: ${decryptedData.phone}\n📍 Location: ${decryptedData.location}\n⌚️ Date: ${decryptedData.date}\n✅ Type of washing: ${decryptedData.typeOfWashing}`;
 
         await axios.post(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`, {
             chat_id: process.env.CHAT_ID,

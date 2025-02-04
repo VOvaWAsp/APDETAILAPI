@@ -5,5 +5,6 @@ export const messageToTelegram = Joi.object({
     email: Joi.string().email().required(),
     phone: Joi.number().required(),
     location: Joi.string().required(),
-    date: Joi.string().required()
+    date: Joi.string().required(),
+    typeOfWashing: Joi.string().required()
 })
