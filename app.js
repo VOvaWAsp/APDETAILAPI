@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import telegramRouter from "./routes/TelegramRouter.js";
+import reviewsRouter from "./routes/reviewsRouter.js";
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use('/api/telegrambooking', telegramRouter);
+app.use('/api/reviews', reviewsRouter);
+
 
 app.use((_, res) => {
     res.status(404).json({message: "Route not found"});
