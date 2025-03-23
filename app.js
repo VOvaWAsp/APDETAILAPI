@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import telegramRouter from "./routes/TelegramRouter.js";
 import reviewsRouter from "./routes/reviewsRouter.js";
+import blogsRouter from "./routes/blogsRouter.js";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(express.static("public"));
 
 app.use('/api/telegrambooking', telegramRouter);
 app.use('/api/reviews', reviewsRouter);
+app.use('/api/blogs', blogsRouter);
 
 
 app.use((_, res) => {
